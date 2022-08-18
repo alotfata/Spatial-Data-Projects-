@@ -75,5 +75,25 @@ ppois <- rpoispp(lambda , window = disc10)
 # Plot the Poisson point pattern
 plot(ppois)
 
+# Create a disc of radius 10
+disc10 <-  disc(radius=10, centre=c(0,0))
+disc10 
+# Generate clustered points from a Thomas process
+set.seed(123)
+p_cluster <- rThomas(kappa = 0.35, scale = 1, mu = 3, win = disc10)
+plot(p_cluster)
+
+# Run a quadrat test
+plot(p_cluster, alternative = "clustered")
+
+quadrat.test(p_cluster, 
+# Regular points from a Strauss process
+set.seed(123)
+p_regular <- rStrauss(beta = 2.9, gamma = 0.025, R = .5, W = disc(10))
+plot(p_regular)
+
+# Run a quadrat test
+quadrat.test(p_regular, alternative="clustered")
+
 
 
